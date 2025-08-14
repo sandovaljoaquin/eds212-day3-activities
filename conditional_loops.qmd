@@ -1,0 +1,80 @@
+---
+title: "conditional_loops"
+format: html
+editor: visual
+---
+## Task 1 
+
+```{r}
+# Creating an object with a value of 48 (representing Particulate Matter 2.5, an indicator for air quality)
+
+pm2_5 <- 175
+
+if(pm2_5 < 100) {
+  print("Low to Moderate risk")
+} else if(pm2_5 <= 100 | pm2_5 < 150) {
+  print("Unhealthy for sensitive groups")
+} else if(pm2_5 >= 150) {
+  print("Health risk is present")
+}
+
+# Need to run all together to get output 
+```
+
+## Task 2 
+```{r}
+# Return 'You found a whale if only the word 'whale' is detected' 
+library(stringr)
+
+species <-"blue whale"
+
+if(str_detect(species, "whale")) {
+  print("You found a whale")
+} else {
+  print("nothing")
+}
+```
+
+## Task 3 
+```{r}
+# store the base price of burrito 
+
+base_burrito <- 6.50
+main_ingredient <- "steak"
+
+if(main_ingredient == "veggie"){
+  price = base_burrito
+} else if (main_ingredient == "chicken") {
+  price = base_burrito + 3
+ } else if(main_ingredient == "steak") {
+    price = base_burrito + 3.25
+ }
+
+print(price)
+```
+## Task 4 
+```{r}
+
+# Making a vector called fish with respective numbers for different species of fish in an aquarium
+
+fish <- c(goldfish = 8, tetras = 10, guppies = 12, mollies = 23)
+
+# Writing a for loop iterates thru fish and returns proportion of that fish species in the aquarium 
+
+for (i in seq_along(fish)) {
+  fish_prop <- fish[i] / sum(fish)
+print(fish_prop)
+}
+```
+
+## Task 5 
+
+```{r}
+# Writing a for loop that itterates over all months and prints number of month 
+
+month.name
+for (i in seq_along(month.name)) {
+  print(paste(month.name[i], "is month", i))
+}
+
+```
