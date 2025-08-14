@@ -1,0 +1,53 @@
+---
+title: "toolik_chem"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+#Attach necessary packages
+
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+#Read in data, rename, replace '.' with NA, and clean column names to lower snake case
+
+toolik_biochem <- read_csv(here::here("data", "2011_Kling_Akchem.csv"), 
+                          na = c(".", "NA")) |> 
+  janitor::clean_names()
+
+```
+
+```{r}
+#Create a subset of data that only contains observations from the Toolik Inlet site and only the variables of pH, dissolved organic carbon,  and total dissolved nitrogen.
+
+inlet_biochem <- toolik_biochem |>
+  filter(site == "Toolik Inlet") |>
+  select(p_h, doc_u_m, tdn_u_m)
+```
+
+```{r}
+# Find the mean value of each column in 3 different ways
+
+# write a loop from scratch
+
+for (i in seq_along(inlet_biochem)) {
+  mean_val <- mean(inlet_biochem[[i]], na.rm = TRUE)
+  print(mean_val)
+}
+# using apply 
+
+apply(X = inlet_biochem, MARGIN = 2 , FUN = mean, na.rm = TRUE)
+
+# using across 
+across()
+
+```
+
+
+
